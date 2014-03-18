@@ -34,6 +34,7 @@
 - (IBAction)onSaveButtonPressed:(id)sender
 {
     self.creature.name = self.nameTextField.text;
+    self.name.text = self.creature.name;
     self.nameTextField.alpha = 0;
     self.name.alpha = 1;
 }

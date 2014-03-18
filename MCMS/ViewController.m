@@ -13,6 +13,7 @@
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 {
     NSMutableArray *creatures;
+    BOOL madeSegue;
 }
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
 @property (strong, nonatomic) IBOutlet UITextField *magicalCreatureTextField;
@@ -72,6 +73,13 @@
     MagicalCreature *creature = [creatures objectAtIndex:indexPath.row];
     CreatureViewController *vc = segue.destinationViewController;
     vc.creature = creature;
+    
+    madeSegue = YES;
+    if (madeSegue == YES)
+    {
+        [self.myTableView reloadData];
+        madeSegue = NO;
+    }
 }
 
 @end
