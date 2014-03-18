@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "MagicalCreature.h"
+#import "CreatureViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -65,12 +66,12 @@
     [self.magicalCreatureTextField resignFirstResponder];
 }
 
-
-
-
-
-
-
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell* )sender
+{
+    NSIndexPath *indexPath = [self.myTableView indexPathForCell:sender];
+    MagicalCreature *creature = [creatures objectAtIndex:indexPath.row];
+    CreatureViewController *vc = segue.destinationViewController;
+    vc.creature = creature;
+}
 
 @end

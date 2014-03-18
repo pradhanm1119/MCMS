@@ -9,41 +9,33 @@
 #import "CreatureViewController.h"
 
 @interface CreatureViewController ()
+@property (strong, nonatomic) IBOutlet UILabel *name;
+@property (strong, nonatomic) IBOutlet UITextField *nameTextField;
+@property (strong, nonatomic) IBOutlet UILabel *category;
 
 @end
 
 @implementation CreatureViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.name.text =  self.creature.name;
+    self.nameTextField.alpha = 0;
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)onEditButtonPressed:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.name.alpha = 0;
+    self.nameTextField.alpha = 1;
+    self.nameTextField.text = self.creature.name;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (IBAction)onSaveButtonPressed:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    self.creature.name = self.nameTextField.text;
+    self.nameTextField.alpha = 0;
+    self.name.alpha = 1;
 }
-*/
 
 @end
