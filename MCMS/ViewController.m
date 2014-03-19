@@ -59,12 +59,22 @@
 
 - (IBAction)onAddButtonPressed:(id)sender
 {
-    MagicalCreature *mc = [[MagicalCreature alloc] init];
-    mc.name = self.magicalCreatureTextField.text;
-    [creatures addObject:mc];
-    [self.myTableView reloadData];
-    self.magicalCreatureTextField.text = nil;
-    [self.magicalCreatureTextField resignFirstResponder];
+    if (self.magicalCreatureTextField.text != NULL)
+    {
+        MagicalCreature *mc = [[MagicalCreature alloc] init];
+        
+        mc.name = self.magicalCreatureTextField.text;
+        [creatures addObject:mc];
+        [self.myTableView reloadData];
+        self.magicalCreatureTextField.text = nil;
+        [self.magicalCreatureTextField resignFirstResponder];
+    }
+    else
+        assert("Cannot add empty field!");
+    
+//    [self.myTableView reloadData];
+//    self.magicalCreatureTextField.text = nil;
+//    [self.magicalCreatureTextField resignFirstResponder];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell* )sender
@@ -74,11 +84,12 @@
     CreatureViewController *vc = segue.destinationViewController;
     vc.creature = creature;
     
-    madeSegue = YES;
-    if (madeSegue == YES)
+    vc.creature.madeSegue = YES;
+
+    if (vc.creature.madeSegue == YES)
     {
         [self.myTableView reloadData];
-        madeSegue = NO;
+        vc.creature.madeSegue = NO;
     }
 }
 

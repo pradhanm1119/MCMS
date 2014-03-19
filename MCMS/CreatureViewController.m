@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Manas Pradhan. All rights reserved.
 //
 
+#import "ViewController.h"
 #import "CreatureViewController.h"
 
 @interface CreatureViewController ()
@@ -37,6 +38,10 @@
     self.name.text = self.creature.name;
     self.nameTextField.alpha = 0;
     self.name.alpha = 1;
+}
+
+-(IBAction)reset:(UIStoryboardSegue *)segue
+{
 }
 
 @end
