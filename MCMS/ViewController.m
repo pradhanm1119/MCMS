@@ -59,7 +59,7 @@
 
 - (IBAction)onAddButtonPressed:(id)sender
 {
-    if (self.magicalCreatureTextField.text != NULL)
+    if (![self.magicalCreatureTextField.text  isEqual: @""])
     {
         MagicalCreature *mc = [[MagicalCreature alloc] init];
         
@@ -84,13 +84,23 @@
     CreatureViewController *vc = segue.destinationViewController;
     vc.creature = creature;
     
-    vc.creature.madeSegue = YES;
+//    vc.creature.madeSegue = YES;
+//
+//    if (vc.creature.madeSegue == YES)
+//    {
+//        [self.myTableView reloadData];
+//        vc.creature.madeSegue = NO;
+//    }
+}
 
-    if (vc.creature.madeSegue == YES)
-    {
-        [self.myTableView reloadData];
-        vc.creature.madeSegue = NO;
-    }
+- (IBAction)unWindFromCreatureVCtoViewController:(UIStoryboardSegue *)sender
+
+{
+    // This is the target to get back from the other story board -- CreatureViewController
+    CreatureViewController *fromSegue;
+    
+    fromSegue = [sender sourceViewController];
+    [self.myTableView reloadData];
 }
 
 @end

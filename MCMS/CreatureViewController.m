@@ -40,8 +40,4 @@
     self.name.alpha = 1;
 }
 
--(IBAction)reset:(UIStoryboardSegue *)segue
-{
-}
-
 @end

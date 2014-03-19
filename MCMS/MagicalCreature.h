@@ -11,5 +11,4 @@
 @interface MagicalCreature : NSObject
 @property NSString* name;
 @property NSString* description;
-@property BOOL madeSegue;
 @end
